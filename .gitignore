@@ -1,0 +1,47 @@
+# remove maven output files
+
+*.class
+
+# Mac .DS_Store
+.DS_Store
+
+# NetBeans custom maven targets file
+nbactions.xml
+
+# Eclipse junk
+.settings/
+.settings/*
+src/main/webapp/WEB-INF/lib
+.classpath
+.project
+.externalToolBuilders/
+.metadata
+*.launch
+
+#GwT junk
+.gwt
+
+# Gwt JS full compile
+src/main/webapp/nexia/
+src/main/gwt-unitCache/
+src/main/webapp/WEB-INF/deploy/
+src/main/webapp/WEB-INF/classes/
+.gwt-tmp/
+src/main/webapp/com.oruxa.isp.Sportal/
+
+ Windows image file caches
+Thumbs.db 
+
+# Windows folder config file
+Desktop.ini
+
+#Ubuntu gEdit shadow files
+*~
+/dropNupdate.sh
+/drop.sql
+
+#IntelliJ stuff
+/.idea/
+*.iml
+
+*.log

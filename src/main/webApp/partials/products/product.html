@@ -1,0 +1,29 @@
+<div ng-controller='productController' class="width500">
+    <div>
+        <span class='title'>Products</span>
+        <div class="rightFloat">
+            <ul class="pager">
+                <li class="previous">
+                    <a href="#/home">← Back</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div ng-show="loadingDone">
+        <div class='alert alert-dismissable alert-info'>
+            <input class="form-control margin-bottom10" type="text" ng-model="search.name" placeholder="Search">
+            <ul class='list-group'>
+                <li ng-repeat="product in products |  filter:search" class="list-group-item">
+                    <span class="badge">$ {{product.price}}</span>
+                    <input type="checkbox" ng-model="product.selected">{{product.name}}</input>
+                </li>
+            </ul>
+        </div>
+        <input class="btn btn-primary" type="button" ng-click="reviewOrder()" value="Order"/>
+    </div>
+    <div ng-hide="loadingDone" class="label label-primary">Loading...</div>
+
+</div>
+

@@ -1,0 +1,29 @@
+<div ng-controller='confirmationController' class="width500">
+    <div>
+        <span class='title'>Order Confirmation</span>
+        <div class="rightFloat">
+            <ul class="pager">
+                <li class="previous">
+                    <a href="#/home">← Back</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="alert alert-dismissable alert-success">
+        <strong>Order ID: </strong>{{order.orderId}} 
+        <strong> on </strong>{{order.formattedDate}}
+        <ul class='list-group'>
+            <li ng-repeat="item in order.productItems" class="list-group-item">
+                <span class="badge">$ {{item.price}}</span>
+                {{item.name}}
+            </li>
+            <li class="bold list-group-item active">
+                <span class="badge">$ {{orderTotalPrice}}</span>
+                Total
+            </li>
+        </ul>
+    </div>
+</div>
+

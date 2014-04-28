@@ -1,0 +1,32 @@
+<div ng-controller='orderController' class="width500">
+    <div>
+        <span class='title'>Your Order</span>
+        <div class="rightFloat">
+            <ul class="pager">
+                <li class="previous">
+                    <a href="#/product/">← Back</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div>
+        <ul class='list-group'>
+            <li ng-repeat="order in selectedProducts" class="list-group-item">
+                <span class="badge">$ {{order.price}}</span>
+                {{order.name}}
+            </li>
+            <li class="bold list-group-item active">
+                <span class="badge">$ {{totalOrderValue}}</span>
+                Total
+            </li>
+        </ul>
+    </div>
+
+    <form name="confirmOrder" action="/confirmOrder" method="post">
+        <input class="hidden" type="text" name="selectedIds" value="{{selectedIds}}"/>
+        <input class="btn btn-primary" type="submit" ng-click="submitClick()" value="Confirm Order"/>
+    </form>
+
+</div>
+

@@ -1,0 +1,95 @@
+<div class="landing" ng-controller="landingPageController">
+
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"></a>
+            </div>
+            <div id="navbar-main" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <button type="submit" class="btn btn-default col-lg-12">
+                            <msg dic="landingPage">Sign in</msg>
+                        </button>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--registeration form-->
+    <div class="landing-section">
+        <div class="landing-section-signup">
+            <div class="container">
+                <div  class="col-lg-9 landing-moto">
+                    <msg dic="landingPage">Log the matters, </br>to see what's going on.</msg>
+                </div>
+
+                <!--signup form-->
+                <div class="col-lg-3 signup-form">
+                    <form name="regForm" class="form-horizontal" novalidate ng-submit='submitForm()'>
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input my-popup show-popup='{{usernamePopupe}}' popup-place='left'
+                                           class="form-control" id="inputUsername" ng-model="user.name"
+                                           placeholder="Pick a username" type="text"
+                                           required
+                                           has-validation-popup required-msg="Anahita">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input class="form-control" id="inputEmail" placeholder="Your email" type="text" ng-maxlength="2">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input class="form-control" id="inputPassword" placeholder="Create a password" type="text">
+                                </div>
+                            </div>
+
+                            <h6 class="passwordRule">
+                                <msg dic="landingPage">Use at least one lowercase letter, one numeral, and seven characters</msg>.
+                            </h6>
+
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <button type="submit" class="btn btn-primary col-lg-12">
+                                        <strong><msg dic="landingPage">Sign up for Logmatter</msg></strong>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <h6 class="passwordRule">
+                                <msg dic="landingPage">By clicking "Sign up for Logmatter", you agree to our</msg>
+                                <a href="#">
+                                    <msg>term of service</msg>
+                                </a>
+                                <msg>and</msg>
+                                <a href="#">
+                                    <msg>privacy policy</msg>
+                                </a>
+                            </h6>
+
+
+
+
+
+                        </fieldset>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <my-dialog show='usernamePopup' modal='false' on-okay='okayHandler'>Navid</my-dialog>
+</div>
+
