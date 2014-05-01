@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>assignment.ethoca.com</groupId>
-    <artifactId>navidEsfahani</artifactId>
+    <groupId>com.oruxa</groupId>
+    <artifactId>logmatter</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
@@ -17,10 +17,19 @@
 
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
+        <mail.version>1.4.7</mail.version>
 
         <jdbc.version>9.1-901-1.jdbc4</jdbc.version>
+        <mongodb.version>2.12.0</mongodb.version>
+        <morphia.version>0.107</morphia.version>
+        <guice.version>3.0</guice.version>
+        <jersey.version>1.9.1</jersey.version>
+        <jackson.version>1.9.13</jackson.version>
+
         <liquibase.version>2.0.3</liquibase.version>
-        
+
+        <myBetis.version>3.2.7</myBetis.version>
+        <myBetis-Guice.version>3.6</myBetis-Guice.version>
 
     </properties>
 
@@ -38,18 +47,74 @@
             <url>http://download.java.net/maven/2/</url>
             <layout>default</layout>
         </repository>
+
         <repository>
             <id>java.net2</id>
             <name>Repository hosting the jee6 artifacts</name>
             <url>http://download.java.net/maven/2</url>
         </repository>
+
+        <!--<repository>-->
+            <!--<id>morphia</id>-->
+            <!--<url>http://morphia.googlecode.com/svn/mavenrepo/</url>-->
+        <!--</repository>-->
     </repositories>
 
 
 
     <dependencies>
 
+        <!--Jersey-->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${mail.version}</version>
+        </dependency>
 
+
+        <!--Jackson-->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-jaxrs</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+
+        <!--Guice-->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-multibindings</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+
+
+
+        <!--Jetty-->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
@@ -68,6 +133,24 @@
             <version>1.0</version>
         </dependency>
 
+
+        <!--Mongodb-->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>${mongodb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb.morphia</groupId>
+            <artifactId>morphia</artifactId>
+            <version>${morphia.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb.morphia</groupId>
+            <artifactId>morphia-guice-plug</artifactId>
+            <version>${morphia.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -79,25 +162,8 @@
                 <version>${jetty.version}</version>
                 <configuration>
                     <contextPath>/</contextPath>
+                    <reload>manual</reload>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-                <version>${liquibase.version}</version>
-                <configuration>
-
-
-                    <changeLogFile>dbscript/bootstrap.xml</changeLogFile>
-                    <driver>org.postgresql.Driver</driver>
-                    <url>${db.connectionURL}</url>
-                    <username>${db.username}</username>
-                    <password>${db.password}</password>
-                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-                    <rollbackTag>initialized</rollbackTag>
-                </configuration>
-
             </plugin>
         </plugins>
 
@@ -120,12 +186,8 @@
             </activation>
 
             <properties>
-                <db.connectionURL>jdbc:postgresql://localhost/ethoca</db.connectionURL>
-                <db.username>postgres</db.username>
-                <db.password>1234</db.password>
                 <db.host>localhost</db.host>
-                <db.schema>ethoca</db.schema>
-                <db.driver>org.postgresql.Driver</db.driver>
+                <db.database>logmatter</db.database>
             </properties>
         </profile>
     </profiles>
